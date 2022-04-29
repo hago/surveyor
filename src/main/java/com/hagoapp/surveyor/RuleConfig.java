@@ -11,6 +11,7 @@ import java.util.List;
 
 public class RuleConfig {
     private String configType;
+    private boolean nullable;
 
     public String getConfigType() {
         return configType;
@@ -18,5 +19,17 @@ public class RuleConfig {
 
     public int getParamCount() {
         return -1;
+    }
+
+    public boolean isNullable() {
+        return nullable;
+    }
+
+    public void setConfigType(String configType) {
+        this.configType = configType;
+    }
+
+    public void setNullable(boolean nullable) {
+        this.nullable = nullable;
     }
 }
