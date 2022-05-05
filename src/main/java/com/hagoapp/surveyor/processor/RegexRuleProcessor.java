@@ -10,6 +10,7 @@ package com.hagoapp.surveyor.processor;
 import com.hagoapp.surveyor.RuleConfig;
 import com.hagoapp.surveyor.rule.RegexRuleConfig;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class RegexRuleProcessor implements RuleConfigProcessor<String> {
@@ -35,14 +36,14 @@ public class RegexRuleProcessor implements RuleConfigProcessor<String> {
     }
 
     @Override
-    public boolean process(String... params) {
-        if ((params == null) || (params.length == 0)) {
+    public boolean process(List<String> params) {
+        if ((params == null) || params.isEmpty()) {
             if (config.isNullable()) {
                 return true;
             }
             throw new IllegalArgumentException("input must not be null");
         }
-        var m = pattern.matcher(params[0]);
+        var m = pattern.matcher(params.get(0));
         return m.matches();
     }
 }

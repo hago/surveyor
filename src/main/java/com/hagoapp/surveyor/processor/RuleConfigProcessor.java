@@ -9,10 +9,12 @@ package com.hagoapp.surveyor.processor;
 
 import com.hagoapp.surveyor.RuleConfig;
 
+import java.util.List;
+
 public interface RuleConfigProcessor<T> {
     String getSupportedConfigType();
 
     RuleConfigProcessor<T> acceptConfiguration(RuleConfig ruleConfig);
 
-    boolean process(T... params);
+    boolean process(List<T> params);
 }
