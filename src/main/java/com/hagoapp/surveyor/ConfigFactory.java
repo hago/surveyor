@@ -13,7 +13,10 @@ import org.reflections.scanners.Scanners;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,6 +46,12 @@ public class ConfigFactory {
                 logger.error("Error occurs while trying to instantiate {}", type.getCanonicalName());
             }
         }
+    }
+
+    public static RuleConfig createRuleConfig(InputStream stream) throws IOException {
+        var buffer = stream.readAllBytes();
+        var json = new String(buffer, StandardCharsets.UTF_8);
+        return createRuleConfig(json);
     }
 
     public static RuleConfig createRuleConfig(String json) {

@@ -16,4 +16,7 @@ public class Constants {
     public static Logger getLogger() {
         return logger;
     }
+
+    public static final String TEST_BASE_DIRECTORY = "test.dir";
+    public static final String CONFIG_TEST_BASE_DIRECTORY = "test.config.dir";
 }
