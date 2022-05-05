@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test
 import java.io.File
 import java.io.FileInputStream
 
-class ConfigFactoryTest {
+class SurveyorFactoryTest {
 
     companion object {
         private var baseDirectory: String = "./tests/sampleconfig"
@@ -38,7 +38,7 @@ class ConfigFactoryTest {
         for (case in cases) {
             val f = File(baseDirectory, case.first)
             FileInputStream(f).use {
-                val cfg = ConfigFactory.createRuleConfig(it)
+                val cfg = SurveyorFactory.createRuleConfig(it)
                 Assertions.assertEquals(case.second, cfg::class.java)
             }
         }

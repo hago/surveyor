@@ -20,13 +20,13 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ConfigFactory {
+public class SurveyorFactory {
 
     private static final Map<String, Class<? extends RuleConfig>> configurations = new HashMap<>();
     private static final Logger logger = LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
 
     static {
-        registerRuleConfiguration(ConfigFactory.class.getPackageName());
+        registerRuleConfiguration(SurveyorFactory.class.getPackageName());
     }
 
     public static void registerRuleConfiguration(String packageName) {
