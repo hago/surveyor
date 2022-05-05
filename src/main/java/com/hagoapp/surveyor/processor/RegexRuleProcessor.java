@@ -9,6 +9,7 @@ package com.hagoapp.surveyor.processor;
 
 import com.hagoapp.surveyor.RuleConfig;
 import com.hagoapp.surveyor.rule.RegexRuleConfig;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.regex.Pattern;
@@ -24,7 +25,7 @@ public class RegexRuleProcessor implements RuleConfigProcessor<String> {
     }
 
     @Override
-    public RuleConfigProcessor<String> acceptConfiguration(RuleConfig ruleConfig) {
+    public RuleConfigProcessor<String> acceptConfiguration(@NotNull RuleConfig ruleConfig) {
         if (!(ruleConfig instanceof RegexRuleConfig)) {
             throw new IllegalArgumentException("Not a regex rule config");
         }
@@ -34,7 +35,7 @@ public class RegexRuleProcessor implements RuleConfigProcessor<String> {
     }
 
     @Override
-    public boolean process(List<String> params) {
+    public boolean process(@NotNull List<String> params) {
         if ((params == null) || params.isEmpty()) {
             if (config.isNullable()) {
                 return true;

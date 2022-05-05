@@ -8,13 +8,14 @@
 package com.hagoapp.surveyor.processor;
 
 import com.hagoapp.surveyor.RuleConfig;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
 public interface RuleConfigProcessor<T> {
     String getSupportedConfigType();
 
-    RuleConfigProcessor<T> acceptConfiguration(RuleConfig ruleConfig);
+    RuleConfigProcessor<T> acceptConfiguration(@NotNull RuleConfig ruleConfig);
 
-    boolean process(List<T> params);
+    boolean process(@NotNull List<T> params);
 }
