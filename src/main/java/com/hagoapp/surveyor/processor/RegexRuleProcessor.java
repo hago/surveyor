@@ -15,14 +15,12 @@ import java.util.regex.Pattern;
 
 public class RegexRuleProcessor implements RuleConfigProcessor<String> {
 
-    private static final RegexRuleConfig configInstance = new RegexRuleConfig();
-
     private RegexRuleConfig config;
     private Pattern pattern;
 
     @Override
     public String getSupportedConfigType() {
-        return configInstance.getConfigType();
+        return RegexRuleConfig.REGEX_RULE_CONFIG_TYPE;
     }
 
     @Override
