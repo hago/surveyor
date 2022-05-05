@@ -8,6 +8,7 @@
 package com.hagoapp.surveyor;
 
 import com.google.gson.GsonBuilder;
+import com.hagoapp.surveyor.processor.RuleConfigProcessor;
 import org.reflections.Reflections;
 import org.reflections.scanners.Scanners;
 import org.slf4j.Logger;
@@ -23,6 +24,7 @@ import java.util.Map;
 public class SurveyorFactory {
 
     private static final Map<String, Class<? extends RuleConfig>> configurations = new HashMap<>();
+    private static final Map<String, Class<? extends RuleConfigProcessor>> processors = new HashMap<>();
     private static final Logger logger = LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
 
     static {
@@ -41,6 +43,22 @@ public class SurveyorFactory {
                             oldClz.getCanonicalName(), type.getCanonicalName(), typeName);
                 }
                 configurations.put(typeName, type);
+            } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
+                     NoSuchMethodException e) {
+                logger.error("Error occurs while trying to instantiate {}", type.getCanonicalName());
+            }
+        }
+        var processorTypes = new Reflections(packageName, Scanners.SubTypes).getSubTypesOf(RuleConfigProcessor.class);
+        for (var type : processorTypes) {
+            try {
+                var instance = type.getConstructor().newInstance();
+                var typeName = instance.getSupportedConfigType();
+                if (processors.containsKey(typeName)) {
+                    var oldClz = processors.get(typeName);
+                    logger.warn("processor type {} is replaced by {} for same type name {}",
+                            oldClz.getCanonicalName(), type.getCanonicalName(), typeName);
+                }
+                processors.put(typeName, type);
             } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
                      NoSuchMethodException e) {
                 logger.error("Error occurs while trying to instantiate {}", type.getCanonicalName());
@@ -65,5 +83,22 @@ public class SurveyorFactory {
                     String.format("no rule config class found for name: %s", typeName));
         }
         return gson.fromJson(json, clz);
+    }
+
+    public static RuleConfigProcessor<?> createRuleProcessor(RuleConfig config) {
+        var typeName = config.getConfigType();
+        var clz = processors.get(typeName);
+        if (clz == null) {
+            logger.error("no rule processor class found for name: {}", typeName);
+            throw new UnsupportedOperationException(
+                    String.format("no processor config class found for name: %s", typeName));
+        }
+        try {
+            return clz.getConstructor().newInstance();
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
+                 NoSuchMethodException e) {
+            throw new UnsupportedOperationException(
+                    String.format("error occurs while instantiating name: %s", typeName));
+        }
     }
 }

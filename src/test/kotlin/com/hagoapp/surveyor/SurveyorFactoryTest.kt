@@ -7,6 +7,7 @@
 
 package com.hagoapp.surveyor
 
+import com.hagoapp.surveyor.processor.RegexRuleProcessor
 import com.hagoapp.surveyor.rule.RegexRuleConfig
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeAll
@@ -30,16 +31,18 @@ class SurveyorFactoryTest {
 
     private val logger = Constants.getLogger()
     private val cases = listOf(
-        Pair("regexrule.json", RegexRuleConfig::class.java)
+        Triple("regexrule.json", RegexRuleConfig::class.java, RegexRuleProcessor::class.java)
     )
 
     @Test
-    fun testLoadConfig() {
+    fun testLoadProcessor() {
         for (case in cases) {
             val f = File(baseDirectory, case.first)
             FileInputStream(f).use {
                 val cfg = SurveyorFactory.createRuleConfig(it)
                 Assertions.assertEquals(case.second, cfg::class.java)
+                val processor = SurveyorFactory.createRuleProcessor(cfg)
+                Assertions.assertEquals(case.third, processor::class.java)
             }
         }
     }
