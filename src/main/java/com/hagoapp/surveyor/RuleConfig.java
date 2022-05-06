@@ -9,6 +9,12 @@ package com.hagoapp.surveyor;
 
 import java.util.List;
 
+/**
+ * The base class to define configuration for a surveyor.
+ *
+ * @author Chaojun Sun
+ * @since 0.1
+ */
 public class RuleConfig {
     private String configType;
     private boolean nullable;
@@ -21,6 +27,13 @@ public class RuleConfig {
         return -1;
     }
 
+    /**
+     * Get the subjects to be handled can be null or not. If true, a null value will result a true result for
+     * <code>process</code> operation of a surveyor.
+     *
+     * @return true for all null values passed to surveyor will result true for  <code>process</code> operation of a
+     * surveyor, otherwise false
+     */
     public boolean isNullable() {
         return nullable;
     }
@@ -29,6 +42,13 @@ public class RuleConfig {
         this.configType = configType;
     }
 
+    /**
+     * Set the subjects to be handled can be null or not. If true, a null value will result a true result for
+     * <code>process</code> operation of a surveyor.
+     *
+     * @param nullable true for all null values passed to surveyor will result true for  <code>process</code> operation
+     *                 of a surveyor, otherwise false
+     */
     public void setNullable(boolean nullable) {
         this.nullable = nullable;
     }

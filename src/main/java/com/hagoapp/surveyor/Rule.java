@@ -7,6 +7,12 @@
 
 package com.hagoapp.surveyor;
 
+/**
+ * Definition of a rule with specific configuration.
+ *
+ * @author Chaojun Sun
+ * @since 0.1
+ */
 public class Rule implements JsonStringify {
     private String name;
     private String description;

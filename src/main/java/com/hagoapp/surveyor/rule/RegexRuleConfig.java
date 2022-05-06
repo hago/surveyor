@@ -9,7 +9,16 @@ package com.hagoapp.surveyor.rule;
 
 import com.hagoapp.surveyor.RuleConfig;
 
+/**
+ * The configuration for a regex matching rule.
+ *
+ * @author Chaojun Sun
+ * @since 0.1
+ */
 public class RegexRuleConfig extends RuleConfig {
+    /**
+     * The regex surveyor type identity.
+     */
     public static final String REGEX_RULE_CONFIG_TYPE = "com.hagoapp.regex";
     private String pattern;
     private boolean caseSensitive;

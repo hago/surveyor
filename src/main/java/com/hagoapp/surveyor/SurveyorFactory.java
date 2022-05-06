@@ -21,6 +21,14 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
+
+/**
+ * The factory class helps to create appropriate <code>RuleConfig</code> sub-typed configuration classes from its JSON
+ * string, or to create appropriate surveyor based on a specific config class.
+ *
+ * @author Chaojun Sun
+ * @since 0.1
+ */
 public class SurveyorFactory {
 
     private static final Map<String, Class<? extends RuleConfig>> configurations = new HashMap<>();
