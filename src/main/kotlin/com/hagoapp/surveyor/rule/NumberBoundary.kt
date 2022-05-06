@@ -18,4 +18,28 @@ data class NumberBoundary(
     fun gt(v: Double): Boolean {
         return if (inclusive) value >= v else value > v
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as NumberBoundary
+
+        if (value != other.value) return false
+        if (inclusive != other.inclusive) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = value.hashCode()
+        result = 31 * result + inclusive.hashCode()
+        return result
+    }
+
+    override fun toString(): String {
+        return "NumberBoundary(value=$value, inclusive=$inclusive)"
+    }
+
+
 }
