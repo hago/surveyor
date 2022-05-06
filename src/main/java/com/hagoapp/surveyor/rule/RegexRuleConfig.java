@@ -10,7 +10,7 @@ package com.hagoapp.surveyor.rule;
 import com.hagoapp.surveyor.RuleConfig;
 
 public class RegexRuleConfig extends RuleConfig {
-    public static final String REGEX_RULE_CONFIG_TYPE = "regex";
+    public static final String REGEX_RULE_CONFIG_TYPE = "com.hagoapp.regex";
     private String pattern;
     private boolean caseSensitive;
 
