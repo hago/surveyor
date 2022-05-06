@@ -19,4 +19,9 @@ public class Constants {
 
     public static final String TEST_BASE_DIRECTORY = "test.dir";
     public static final String CONFIG_TEST_BASE_DIRECTORY = "test.config.dir";
+
+    public static final String NUMBER_RANGE_SAMPLE_CONFIG_EMPTY = "numberrangerule_null.json";
+    public static final String NUMBER_RANGE_SAMPLE_CONFIG_LOWER = "numberrangerule_lower.json";
+    public static final String NUMBER_RANGE_SAMPLE_CONFIG_UPPER = "numberrangerule_upper.json";
+    public static final String NUMBER_RANGE_SAMPLE_CONFIG_BOTH = "numberrangerule_both.json";
 }

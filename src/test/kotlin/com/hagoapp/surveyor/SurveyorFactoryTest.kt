@@ -36,19 +36,19 @@ class SurveyorFactoryTest {
     private val cases = listOf(
         Triple("regexrule.json", RegexRuleConfig::class.java, RegexRuleProcessor::class.java),
         Triple(
-            "numberrangerule_null.json", NumberRangeRuleConfig::class.java,
+            Constants.NUMBER_RANGE_SAMPLE_CONFIG_EMPTY, NumberRangeRuleConfig::class.java,
             NumberRangeRuleProcessor::class.java
         ),
         Triple(
-            "numberrangerule_lower.json", NumberRangeRuleConfig::class.java,
+            Constants.NUMBER_RANGE_SAMPLE_CONFIG_LOWER, NumberRangeRuleConfig::class.java,
             NumberRangeRuleProcessor::class.java
         ),
         Triple(
-            "numberrangerule_upper.json", NumberRangeRuleConfig::class.java,
+            Constants.NUMBER_RANGE_SAMPLE_CONFIG_UPPER, NumberRangeRuleConfig::class.java,
             NumberRangeRuleProcessor::class.java
         ),
         Triple(
-            "numberrangerule_both.json", NumberRangeRuleConfig::class.java,
+            Constants.NUMBER_RANGE_SAMPLE_CONFIG_BOTH, NumberRangeRuleConfig::class.java,
             NumberRangeRuleProcessor::class.java
         )
     )
@@ -67,11 +67,11 @@ class SurveyorFactoryTest {
     }
 
     private val numberRangeCases = listOf(
-        Triple("numberrangerule_null.json", null, null),
-        Triple("numberrangerule_lower.json", NumberBoundary(-2.0, false), null),
-        Triple("numberrangerule_upper.json", null, NumberBoundary(99.123, true)),
+        Triple(Constants.NUMBER_RANGE_SAMPLE_CONFIG_EMPTY, null, null),
+        Triple(Constants.NUMBER_RANGE_SAMPLE_CONFIG_LOWER, NumberBoundary(-2.0, false), null),
+        Triple(Constants.NUMBER_RANGE_SAMPLE_CONFIG_UPPER, null, NumberBoundary(99.123, true)),
         Triple(
-            "numberrangerule_both.json",
+            Constants.NUMBER_RANGE_SAMPLE_CONFIG_BOTH,
             NumberBoundary(-2.0, true),
             NumberBoundary(99.123, true)
         )
