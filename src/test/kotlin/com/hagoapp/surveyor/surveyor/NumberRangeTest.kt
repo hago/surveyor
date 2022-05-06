@@ -5,7 +5,7 @@
  *  file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package com.hagoapp.surveyor.processor
+package com.hagoapp.surveyor.surveyor
 
 import com.hagoapp.surveyor.Constants
 import com.hagoapp.surveyor.SurveyorFactory

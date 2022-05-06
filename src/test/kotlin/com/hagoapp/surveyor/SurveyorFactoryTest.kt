@@ -7,8 +7,8 @@
 
 package com.hagoapp.surveyor
 
-import com.hagoapp.surveyor.processor.NumberRangeRuleSurveyor
-import com.hagoapp.surveyor.processor.RegexRuleSurveyor
+import com.hagoapp.surveyor.surveyor.NumberRangeRuleSurveyor
+import com.hagoapp.surveyor.surveyor.RegexRuleSurveyor
 import com.hagoapp.surveyor.rule.NumberBoundary
 import com.hagoapp.surveyor.rule.NumberRangeRuleConfig
 import com.hagoapp.surveyor.rule.RegexRuleConfig

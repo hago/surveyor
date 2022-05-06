@@ -8,7 +8,7 @@
 package com.hagoapp.surveyor;
 
 import com.google.gson.GsonBuilder;
-import com.hagoapp.surveyor.processor.Surveyor;
+import com.hagoapp.surveyor.surveyor.Surveyor;
 import org.reflections.Reflections;
 import org.reflections.scanners.Scanners;
 import org.slf4j.Logger;
