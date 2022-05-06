@@ -7,14 +7,34 @@
 
 package com.hagoapp.surveyor.rule
 
+/**
+ * The class defines a boundary of number.
+ *
+ * @property value  the boundary value
+ * @property inclusive  whether ths boundary value should be considered when comparing
+ *
+ * @author Chaojun Sun
+ */
 data class NumberBoundary(
     val value: Double,
     val inclusive: Boolean
 ) {
+    /**
+     * Compare operation, whether the input is less than / less than or equals boundary.
+     *
+     * @param v input value
+     * @return  true if the input is less than / less than or equals boundary, otherwise false
+     */
     fun lt(v: Double): Boolean {
         return if (inclusive) value <= v else value < v
     }
 
+    /**
+     * Compare operation, whether the input is greater than / greater than or equals boundary.
+     *
+     * @param v input value
+     * @return  true if the input is greater than / greater than or equals boundary, otherwise false
+     */
     fun gt(v: Double): Boolean {
         return if (inclusive) value >= v else value > v
     }
