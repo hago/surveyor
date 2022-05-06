@@ -8,19 +8,6 @@ class NumberRangeRuleConfig : RuleConfig() {
         const val NUMBER_RANGE_CONFIG = "com.hagoapp.number.range"
     }
 
-    data class NumberBoundary(
-        val value: Double,
-        val inclusive: Boolean
-    ) {
-        fun lt(v: Double): Boolean {
-            return if (inclusive) value <= v else value < v
-        }
-
-        fun gt(v: Double): Boolean {
-            return if (inclusive) value >= v else value > v
-        }
-    }
-
     val lowerBoundary: NumberBoundary? = null
     val upperBoundary: NumberBoundary? = null
 
