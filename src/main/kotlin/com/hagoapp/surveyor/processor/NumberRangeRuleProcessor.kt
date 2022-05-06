@@ -3,7 +3,7 @@ package com.hagoapp.surveyor.processor
 import com.hagoapp.surveyor.RuleConfig
 import com.hagoapp.surveyor.rule.NumberRangeRuleConfig
 
-class NumberRangeRuleProcessor : RuleConfigProcessor<Double> {
+class NumberRangeRuleProcessor : RuleConfigProcessor {
 
     private lateinit var config: NumberRangeRuleConfig
 
@@ -11,7 +11,7 @@ class NumberRangeRuleProcessor : RuleConfigProcessor<Double> {
         return NumberRangeRuleConfig.NUMBER_RANGE_CONFIG
     }
 
-    override fun acceptConfiguration(ruleConfig: RuleConfig): RuleConfigProcessor<Double> {
+    override fun acceptConfiguration(ruleConfig: RuleConfig): RuleConfigProcessor {
         if (ruleConfig !is NumberRangeRuleConfig) {
             throw UnsupportedOperationException("Not a number range config")
         }
@@ -19,14 +19,22 @@ class NumberRangeRuleProcessor : RuleConfigProcessor<Double> {
         return this
     }
 
-    override fun process(params: MutableList<Double>): Boolean {
+    override fun process(params: MutableList<Any>): Boolean {
         val p = params.toList()
         return when {
             p.isEmpty() -> true
             config.lowerBoundary == null && config.upperBoundary == null -> true
-            config.lowerBoundary == null -> p.all { config.upperBoundary!!.gt(it) }
-            config.upperBoundary == null -> p.all { config.lowerBoundary!!.lt(it) }
-            else -> p.all { config.lowerBoundary!!.lt(it) && config.upperBoundary!!.gt(it) }
+            config.lowerBoundary == null -> p.map { toNum(it) }.all { config.upperBoundary!!.gt(it) }
+            config.upperBoundary == null -> p.map { toNum(it) }.all { config.lowerBoundary!!.lt(it) }
+            else -> p.map { toNum(it) }.all { config.lowerBoundary!!.lt(it) && config.upperBoundary!!.gt(it) }
+        }
+    }
+
+    private fun toNum(input: Any): Double {
+        if (input !is Number) {
+            throw UnsupportedOperationException("$input should be a number")
+        } else {
+            return input.toDouble()
         }
     }
 }

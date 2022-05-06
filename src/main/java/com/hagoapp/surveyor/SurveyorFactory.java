@@ -85,7 +85,7 @@ public class SurveyorFactory {
         return gson.fromJson(json, clz);
     }
 
-    public static RuleConfigProcessor<?> createRuleProcessor(RuleConfig config) {
+    public static RuleConfigProcessor createRuleProcessor(RuleConfig config) {
         var typeName = config.getConfigType();
         var clz = processors.get(typeName);
         if (clz == null) {

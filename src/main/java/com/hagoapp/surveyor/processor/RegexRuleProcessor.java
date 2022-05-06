@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class RegexRuleProcessor implements RuleConfigProcessor<String> {
+public class RegexRuleProcessor implements RuleConfigProcessor {
 
     private RegexRuleConfig config;
     private Pattern pattern;
@@ -25,7 +25,7 @@ public class RegexRuleProcessor implements RuleConfigProcessor<String> {
     }
 
     @Override
-    public RuleConfigProcessor<String> acceptConfiguration(@NotNull RuleConfig ruleConfig) {
+    public RuleConfigProcessor acceptConfiguration(@NotNull RuleConfig ruleConfig) {
         if (!(ruleConfig instanceof RegexRuleConfig)) {
             throw new IllegalArgumentException("Not a regex rule config");
         }
@@ -35,14 +35,14 @@ public class RegexRuleProcessor implements RuleConfigProcessor<String> {
     }
 
     @Override
-    public boolean process(@NotNull List<String> params) {
-        if ((params == null) || params.isEmpty()) {
+    public boolean process(@NotNull List<Object> params) {
+        if (params.isEmpty()) {
             if (config.isNullable()) {
                 return true;
             }
             throw new IllegalArgumentException("input must not be null");
         }
-        var m = pattern.matcher(params.get(0));
+        var m = pattern.matcher(params.get(0).toString());
         return m.matches();
     }
 }

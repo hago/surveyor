@@ -12,10 +12,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public interface RuleConfigProcessor<T> {
+public interface RuleConfigProcessor {
     String getSupportedConfigType();
 
-    RuleConfigProcessor<T> acceptConfiguration(@NotNull RuleConfig ruleConfig);
+    RuleConfigProcessor acceptConfiguration(@NotNull RuleConfig ruleConfig);
 
-    boolean process(@NotNull List<T> params);
+    boolean process(@NotNull List<Object> params);
 }
