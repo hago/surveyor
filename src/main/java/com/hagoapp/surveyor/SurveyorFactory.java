@@ -8,7 +8,7 @@
 package com.hagoapp.surveyor;
 
 import com.google.gson.GsonBuilder;
-import com.hagoapp.surveyor.processor.RuleConfigProcessor;
+import com.hagoapp.surveyor.processor.Surveyor;
 import org.reflections.Reflections;
 import org.reflections.scanners.Scanners;
 import org.slf4j.Logger;
@@ -24,7 +24,7 @@ import java.util.Map;
 public class SurveyorFactory {
 
     private static final Map<String, Class<? extends RuleConfig>> configurations = new HashMap<>();
-    private static final Map<String, Class<? extends RuleConfigProcessor>> processors = new HashMap<>();
+    private static final Map<String, Class<? extends Surveyor>> processors = new HashMap<>();
     private static final Logger logger = LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
 
     static {
@@ -48,7 +48,7 @@ public class SurveyorFactory {
                 logger.error("Error occurs while trying to instantiate {}", type.getCanonicalName());
             }
         }
-        var processorTypes = new Reflections(packageName, Scanners.SubTypes).getSubTypesOf(RuleConfigProcessor.class);
+        var processorTypes = new Reflections(packageName, Scanners.SubTypes).getSubTypesOf(Surveyor.class);
         for (var type : processorTypes) {
             try {
                 var instance = type.getConstructor().newInstance();
@@ -85,7 +85,7 @@ public class SurveyorFactory {
         return gson.fromJson(json, clz);
     }
 
-    public static RuleConfigProcessor createRuleProcessor(RuleConfig config) {
+    public static Surveyor createRuleProcessor(RuleConfig config) {
         var typeName = config.getConfigType();
         var clz = processors.get(typeName);
         if (clz == null) {

@@ -9,7 +9,7 @@ import com.hagoapp.surveyor.rule.NumberRangeRuleConfig
  *
  * @author Chaojun Sun
  */
-class NumberRangeRuleProcessor : RuleConfigProcessor {
+class NumberRangeRuleProcessor : Surveyor {
 
     private lateinit var config: NumberRangeRuleConfig
 
@@ -17,7 +17,7 @@ class NumberRangeRuleProcessor : RuleConfigProcessor {
         return NumberRangeRuleConfig.NUMBER_RANGE_CONFIG
     }
 
-    override fun acceptConfiguration(ruleConfig: RuleConfig): RuleConfigProcessor {
+    override fun acceptConfiguration(ruleConfig: RuleConfig): Surveyor {
         if (ruleConfig !is NumberRangeRuleConfig) {
             throw UnsupportedOperationException("Not a number range config")
         }

@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class RegexRuleProcessor implements RuleConfigProcessor {
+public class RegexRuleProcessor implements Surveyor {
 
     private RegexRuleConfig config;
     private Pattern pattern;
@@ -25,7 +25,7 @@ public class RegexRuleProcessor implements RuleConfigProcessor {
     }
 
     @Override
-    public RuleConfigProcessor acceptConfiguration(@NotNull RuleConfig ruleConfig) {
+    public Surveyor acceptConfiguration(@NotNull RuleConfig ruleConfig) {
         if (!(ruleConfig instanceof RegexRuleConfig)) {
             throw new IllegalArgumentException("Not a regex rule config");
         }
