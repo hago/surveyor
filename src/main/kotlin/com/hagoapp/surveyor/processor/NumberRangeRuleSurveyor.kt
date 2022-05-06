@@ -9,7 +9,7 @@ import com.hagoapp.surveyor.rule.NumberRangeRuleConfig
  *
  * @author Chaojun Sun
  */
-class NumberRangeRuleProcessor : Surveyor {
+class NumberRangeRuleSurveyor : Surveyor {
 
     private lateinit var config: NumberRangeRuleConfig
 

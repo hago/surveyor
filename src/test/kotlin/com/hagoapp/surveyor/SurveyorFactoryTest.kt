@@ -7,8 +7,8 @@
 
 package com.hagoapp.surveyor
 
-import com.hagoapp.surveyor.processor.NumberRangeRuleProcessor
-import com.hagoapp.surveyor.processor.RegexRuleProcessor
+import com.hagoapp.surveyor.processor.NumberRangeRuleSurveyor
+import com.hagoapp.surveyor.processor.RegexRuleSurveyor
 import com.hagoapp.surveyor.rule.NumberBoundary
 import com.hagoapp.surveyor.rule.NumberRangeRuleConfig
 import com.hagoapp.surveyor.rule.RegexRuleConfig
@@ -34,22 +34,22 @@ class SurveyorFactoryTest {
 
     private val logger = Constants.getLogger()
     private val cases = listOf(
-        Triple("regexrule.json", RegexRuleConfig::class.java, RegexRuleProcessor::class.java),
+        Triple("regexrule.json", RegexRuleConfig::class.java, RegexRuleSurveyor::class.java),
         Triple(
             Constants.NUMBER_RANGE_SAMPLE_CONFIG_EMPTY, NumberRangeRuleConfig::class.java,
-            NumberRangeRuleProcessor::class.java
+            NumberRangeRuleSurveyor::class.java
         ),
         Triple(
             Constants.NUMBER_RANGE_SAMPLE_CONFIG_LOWER, NumberRangeRuleConfig::class.java,
-            NumberRangeRuleProcessor::class.java
+            NumberRangeRuleSurveyor::class.java
         ),
         Triple(
             Constants.NUMBER_RANGE_SAMPLE_CONFIG_UPPER, NumberRangeRuleConfig::class.java,
-            NumberRangeRuleProcessor::class.java
+            NumberRangeRuleSurveyor::class.java
         ),
         Triple(
             Constants.NUMBER_RANGE_SAMPLE_CONFIG_BOTH, NumberRangeRuleConfig::class.java,
-            NumberRangeRuleProcessor::class.java
+            NumberRangeRuleSurveyor::class.java
         )
     )
 

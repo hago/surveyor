@@ -40,7 +40,7 @@ class RegexRuleTest {
         for (case in regexCases) {
             config.pattern = case.regex
             config.isCaseSensitive = case.caseSensitive
-            val processor = RegexRuleProcessor().acceptConfiguration(config)
+            val processor = RegexRuleSurveyor().acceptConfiguration(config)
             val ret = processor.process(listOf(case.text))
             logger.info("test case $case, ${if (ret) "success" else "fail"}")
             Assertions.assertEquals(case.expect, ret)
