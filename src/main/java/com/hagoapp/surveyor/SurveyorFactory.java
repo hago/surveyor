@@ -94,7 +94,7 @@ public class SurveyorFactory {
                     String.format("no processor config class found for name: %s", typeName));
         }
         try {
-            return clz.getConstructor().newInstance();
+            return clz.getConstructor().newInstance().acceptConfiguration(config);
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
                  NoSuchMethodException e) {
             throw new UnsupportedOperationException(
