@@ -95,15 +95,15 @@ public class SurveyorFactory {
 
     public static Surveyor createSurveyor(InputStream stream) throws IOException {
         var config = createRuleConfig(stream);
-        return createRuleProcessor(config);
+        return createSurveyor(config);
     }
 
     public static Surveyor createSurveyor(String json) throws IOException {
         var config = createRuleConfig(json);
-        return createRuleProcessor(config);
+        return createSurveyor(config);
     }
 
-    public static Surveyor createRuleProcessor(RuleConfig config) {
+    public static Surveyor createSurveyor(RuleConfig config) {
         var typeName = config.getConfigType();
         var clz = processors.get(typeName);
         if (clz == null) {
