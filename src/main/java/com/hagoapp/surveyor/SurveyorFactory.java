@@ -93,6 +93,16 @@ public class SurveyorFactory {
         return gson.fromJson(json, clz);
     }
 
+    public static Surveyor createSurveyor(InputStream stream) throws IOException {
+        var config = createRuleConfig(stream);
+        return createRuleProcessor(config);
+    }
+
+    public static Surveyor createSurveyor(String json) throws IOException {
+        var config = createRuleConfig(json);
+        return createRuleProcessor(config);
+    }
+
     public static Surveyor createRuleProcessor(RuleConfig config) {
         var typeName = config.getConfigType();
         var clz = processors.get(typeName);
