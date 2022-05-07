@@ -11,7 +11,9 @@ import com.hagoapp.surveyor.surveyor.NumberRangeRuleSurveyor
 import com.hagoapp.surveyor.surveyor.RegexRuleSurveyor
 import com.hagoapp.surveyor.rule.NumberBoundary
 import com.hagoapp.surveyor.rule.NumberRangeRuleConfig
+import com.hagoapp.surveyor.rule.OptionsRuleConfig
 import com.hagoapp.surveyor.rule.RegexRuleConfig
+import com.hagoapp.surveyor.surveyor.OptionsRuleSurveyor
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
@@ -50,6 +52,22 @@ class SurveyorFactoryTest {
         Triple(
             Constants.NUMBER_RANGE_SAMPLE_CONFIG_BOTH, NumberRangeRuleConfig::class.java,
             NumberRangeRuleSurveyor::class.java
+        ),
+        Triple(
+            Constants.OPTIONS_SAMPLE_BASIC, OptionsRuleConfig::class.java,
+            OptionsRuleSurveyor::class.java
+        ),
+        Triple(
+            Constants.OPTIONS_SAMPLE_NULLABLE, OptionsRuleConfig::class.java,
+            OptionsRuleSurveyor::class.java
+        ),
+        Triple(
+            Constants.OPTIONS_SAMPLE_NULL_OPTION, OptionsRuleConfig::class.java,
+            OptionsRuleSurveyor::class.java
+        ),
+        Triple(
+            Constants.OPTIONS_SAMPLE_CASE_INSENSITIVE, OptionsRuleConfig::class.java,
+            OptionsRuleSurveyor::class.java
         )
     )
 
