@@ -1,7 +1,7 @@
 {
   "configType": "com.hagoapp.options",
   "nullable": true,
-  "caseSensitive": false,
+  "caseSensitive": true,
   "options": [
     "abc",
     "DEF",
