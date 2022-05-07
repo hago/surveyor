@@ -30,7 +30,7 @@ class NumberRangeTest {
         }
     }
 
-    private val logger = Constants.getLogger();
+    private val logger = Constants.getLogger()
     private fun open(filename: String): NumberRangeRuleConfig {
         FileInputStream(File(baseDirectory, filename)).use {
             val cfg = SurveyorFactory.createRuleConfig(it)

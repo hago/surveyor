@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test
 
 class RegexRuleTest {
 
-    private val logger = Constants.getLogger();
+    private val logger = Constants.getLogger()
 
     data class Case(
         val regex: String,
@@ -36,7 +36,7 @@ class RegexRuleTest {
 
     @Test
     fun testRegex() {
-        val config = RegexRuleConfig();
+        val config = RegexRuleConfig()
         for (case in regexCases) {
             config.pattern = case.regex
             config.isCaseSensitive = case.caseSensitive
