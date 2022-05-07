@@ -74,6 +74,10 @@ public class SurveyorFactory {
         }
     }
 
+    public static RuleConfig createRuleConfig(Map<String, Object> map) {
+        return createRuleConfig(new GsonBuilder().create().toJson(map));
+    }
+
     public static RuleConfig createRuleConfig(InputStream stream) throws IOException {
         var buffer = stream.readAllBytes();
         var json = new String(buffer, StandardCharsets.UTF_8);
@@ -91,6 +95,11 @@ public class SurveyorFactory {
                     String.format("no rule config class found for name: %s", typeName));
         }
         return gson.fromJson(json, clz);
+    }
+
+    public static Surveyor createSurveyor(Map<String, Object> map) {
+        var config = createRuleConfig(map);
+        return createSurveyor(config);
     }
 
     public static Surveyor createSurveyor(InputStream stream) throws IOException {
