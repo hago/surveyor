@@ -7,8 +7,6 @@
 
 package com.hagoapp.surveyor;
 
-import java.util.List;
-
 /**
  * The base class to define configuration for a surveyor.
  *
@@ -17,19 +15,15 @@ import java.util.List;
  */
 public class RuleConfig {
     private String configType;
-    private boolean nullable;
+    private boolean nullable = false;
 
     public String getConfigType() {
         return configType;
     }
 
-    public int getParamCount() {
-        return -1;
-    }
-
     /**
      * Get the subjects to be handled can be null or not. If true, a null value will result a true result for
-     * <code>process</code> operation of a surveyor.
+     * <code>process</code> operation of a surveyor. False, not nullable, by default.
      *
      * @return true for all null values passed to surveyor will result true for  <code>process</code> operation of a
      * surveyor, otherwise false
@@ -44,7 +38,7 @@ public class RuleConfig {
 
     /**
      * Set the subjects to be handled can be null or not. If true, a null value will result a true result for
-     * <code>process</code> operation of a surveyor.
+     * <code>process</code> operation of a surveyor. False, not nullable, by default.
      *
      * @param nullable true for all null values passed to surveyor will result true for  <code>process</code> operation
      *                 of a surveyor, otherwise false

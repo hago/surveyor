@@ -40,11 +40,6 @@ public class RegexRuleConfig extends RuleConfig {
     }
 
     @Override
-    public int getParamCount() {
-        return 1;
-    }
-
-    @Override
     public String getConfigType() {
         return REGEX_RULE_CONFIG_TYPE;
     }
