@@ -16,6 +16,8 @@ dependencies {
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.20'
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.20'
 
+    implementation group: 'org.python', name: 'jython-standalone', version: '2.7.2'
+
     implementation 'com.google.code.gson:gson:2.9.0'
     implementation group: 'org.reflections', name: 'reflections', version: '0.10.2'
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'
