@@ -8,18 +8,18 @@
 package com.hagoapp.surveyor.surveyor
 
 import com.hagoapp.surveyor.RuleConfig
-import com.hagoapp.surveyor.rule.EmbedPythonRuleConfig
+import com.hagoapp.surveyor.rule.EmbedJythonRuleConfig
 
-class EmbedPythonSurveyor : Surveyor {
+class EmbedJythonSurveyor : Surveyor {
 
-    private lateinit var config: EmbedPythonRuleConfig
+    private lateinit var config: EmbedJythonRuleConfig
 
     override fun getSupportedConfigType(): String {
-        return EmbedPythonRuleConfig.EMBED_PYTHON_RULE_CONFIG
+        return EmbedJythonRuleConfig.EMBED_PYTHON_RULE_CONFIG
     }
 
     override fun acceptConfiguration(ruleConfig: RuleConfig): Surveyor {
-        if (ruleConfig !is EmbedPythonRuleConfig) {
+        if (ruleConfig !is EmbedJythonRuleConfig) {
             throw UnsupportedOperationException("Not an EmbedPythonRuleConfig but ${ruleConfig::class.java.canonicalName}")
         }
         config = ruleConfig

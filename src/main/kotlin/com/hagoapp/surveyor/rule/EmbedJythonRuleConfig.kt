@@ -9,7 +9,7 @@ package com.hagoapp.surveyor.rule
 
 import com.hagoapp.surveyor.RuleConfig
 
-class EmbedPythonRuleConfig : RuleConfig() {
+class EmbedJythonRuleConfig : RuleConfig() {
     companion object {
         const val EMBED_PYTHON_RULE_CONFIG = "com.hagoapp.embed.jython"
     }
