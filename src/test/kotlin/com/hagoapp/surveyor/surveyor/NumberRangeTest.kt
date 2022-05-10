@@ -9,6 +9,7 @@ package com.hagoapp.surveyor.surveyor
 
 import com.hagoapp.surveyor.Constants
 import com.hagoapp.surveyor.SurveyorFactory
+import com.hagoapp.surveyor.rule.NumberBoundary
 import com.hagoapp.surveyor.rule.NumberRangeRuleConfig
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeAll
@@ -123,4 +124,31 @@ class NumberRangeTest {
             }
         }
     }
+
+    private val numberRangeCases = listOf(
+        Triple(Constants.NUMBER_RANGE_SAMPLE_CONFIG_EMPTY, null, null),
+        Triple(Constants.NUMBER_RANGE_SAMPLE_CONFIG_LOWER, NumberBoundary(-2.0, false), null),
+        Triple(Constants.NUMBER_RANGE_SAMPLE_CONFIG_UPPER, null, NumberBoundary(99.123, true)),
+        Triple(
+            Constants.NUMBER_RANGE_SAMPLE_CONFIG_BOTH,
+            NumberBoundary(-2.0, true),
+            NumberBoundary(99.123, true)
+        )
+    )
+
+    @Test
+    fun testNumberRangeConfig() {
+        for (case in numberRangeCases) {
+            logger.debug("test $case")
+            val f = File(baseDirectory, case.first)
+            FileInputStream(f).use {
+                val cfg = SurveyorFactory.createRuleConfig(it)
+                Assertions.assertTrue(cfg is NumberRangeRuleConfig)
+                val nc = cfg as NumberRangeRuleConfig
+                Assertions.assertEquals(case.second, nc.lowerBoundary)
+                Assertions.assertEquals(case.third, nc.upperBoundary)
+            }
+        }
+    }
+
 }

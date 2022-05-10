@@ -74,7 +74,7 @@ class SurveyorFactoryTest {
     )
 
     @Test
-    fun testLoadProcessor() {
+    fun testLoadSurveyor() {
         for (case in cases) {
             val f = File(baseDirectory, case.first)
             FileInputStream(f).use {
@@ -83,32 +83,6 @@ class SurveyorFactoryTest {
                 SurveyorFactory.createSurveyor(cfg).use { processor ->
                     Assertions.assertEquals(case.third, processor::class.java)
                 }
-            }
-        }
-    }
-
-    private val numberRangeCases = listOf(
-        Triple(Constants.NUMBER_RANGE_SAMPLE_CONFIG_EMPTY, null, null),
-        Triple(Constants.NUMBER_RANGE_SAMPLE_CONFIG_LOWER, NumberBoundary(-2.0, false), null),
-        Triple(Constants.NUMBER_RANGE_SAMPLE_CONFIG_UPPER, null, NumberBoundary(99.123, true)),
-        Triple(
-            Constants.NUMBER_RANGE_SAMPLE_CONFIG_BOTH,
-            NumberBoundary(-2.0, true),
-            NumberBoundary(99.123, true)
-        )
-    )
-
-    @Test
-    fun testNumberRangeConfig() {
-        for (case in numberRangeCases) {
-            logger.debug("test $case")
-            val f = File(baseDirectory, case.first)
-            FileInputStream(f).use {
-                val cfg = SurveyorFactory.createRuleConfig(it)
-                Assertions.assertTrue(cfg is NumberRangeRuleConfig)
-                val nc = cfg as NumberRangeRuleConfig
-                Assertions.assertEquals(case.second, nc.lowerBoundary)
-                Assertions.assertEquals(case.third, nc.upperBoundary)
             }
         }
     }
