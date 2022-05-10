@@ -70,38 +70,42 @@ class OptionsRuleTest {
 
     @Test
     fun testOptionsBasic() {
-        for (case in cases) {
-            val surveyor = createSurveyor(Constants.OPTIONS_SAMPLE_BASIC)
-            val r = surveyor.process(listOf(case.value))
-            Assertions.assertEquals(case.expect4Basic, r)
+        createSurveyor(Constants.OPTIONS_SAMPLE_BASIC).use { surveyor ->
+            for (case in cases) {
+                val r = surveyor.process(listOf(case.value))
+                Assertions.assertEquals(case.expect4Basic, r)
+            }
         }
     }
 
     @Test
     fun testOptionsNullable() {
-        for (case in cases) {
-            val surveyor = createSurveyor(Constants.OPTIONS_SAMPLE_NULLABLE)
-            val r = surveyor.process(listOf(case.value))
-            Assertions.assertEquals(case.expect4Nullable, r)
+        createSurveyor(Constants.OPTIONS_SAMPLE_NULLABLE).use { surveyor ->
+            for (case in cases) {
+                val r = surveyor.process(listOf(case.value))
+                Assertions.assertEquals(case.expect4Nullable, r)
+            }
         }
     }
 
     @Test
     fun testOptionsNullOption() {
-        for (case in cases) {
-            logger.debug("test $case")
-            val surveyor = createSurveyor(Constants.OPTIONS_SAMPLE_NULL_OPTION)
-            val r = surveyor.process(listOf(case.value))
-            Assertions.assertEquals(case.expect4NullOption, r)
+        createSurveyor(Constants.OPTIONS_SAMPLE_NULL_OPTION).use { surveyor ->
+            for (case in cases) {
+                logger.debug("test $case")
+                val r = surveyor.process(listOf(case.value))
+                Assertions.assertEquals(case.expect4NullOption, r)
+            }
         }
     }
 
     @Test
     fun testOptionsCaseInsensitive() {
-        for (case in cases) {
-            val surveyor = createSurveyor(Constants.OPTIONS_SAMPLE_CASE_INSENSITIVE)
-            val r = surveyor.process(listOf(case.value))
-            Assertions.assertEquals(case.expect4CaseInsensitive, r)
+        createSurveyor(Constants.OPTIONS_SAMPLE_CASE_INSENSITIVE).use { surveyor ->
+            for (case in cases) {
+                val r = surveyor.process(listOf(case.value))
+                Assertions.assertEquals(case.expect4CaseInsensitive, r)
+            }
         }
     }
 }

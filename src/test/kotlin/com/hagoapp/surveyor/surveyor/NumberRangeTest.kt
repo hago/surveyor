@@ -83,40 +83,44 @@ class NumberRangeTest {
     @Test
     fun testEmptyNumberRange() {
         val cfg = open(Constants.NUMBER_RANGE_SAMPLE_CONFIG_EMPTY)
-        val processor = SurveyorFactory.createSurveyor(cfg)
-        for (case in cases) {
-            logger.debug("test $case for empty config")
-            Assertions.assertEquals(case.expect4EmptyConfig, processor.process(listOf(case.value)))
+        SurveyorFactory.createSurveyor(cfg).use { processor ->
+            for (case in cases) {
+                logger.debug("test $case for empty config")
+                Assertions.assertEquals(case.expect4EmptyConfig, processor.process(listOf(case.value)))
+            }
         }
     }
 
     @Test
     fun testLowerNumberRange() {
         val cfg = open(Constants.NUMBER_RANGE_SAMPLE_CONFIG_LOWER)
-        val processor = SurveyorFactory.createSurveyor(cfg)
-        for (case in cases) {
-            logger.debug("test $case for lower config")
-            Assertions.assertEquals(case.expect4LowerConfig, processor.process(listOf(case.value)))
+        SurveyorFactory.createSurveyor(cfg).use { processor ->
+            for (case in cases) {
+                logger.debug("test $case for lower config")
+                Assertions.assertEquals(case.expect4LowerConfig, processor.process(listOf(case.value)))
+            }
         }
     }
 
     @Test
     fun testUpperNumberRange() {
         val cfg = open(Constants.NUMBER_RANGE_SAMPLE_CONFIG_UPPER)
-        val processor = SurveyorFactory.createSurveyor(cfg)
-        for (case in cases) {
-            logger.debug("test $case for upper config")
-            Assertions.assertEquals(case.expect4UpperConfig, processor.process(listOf(case.value)))
+        SurveyorFactory.createSurveyor(cfg).use { processor ->
+            for (case in cases) {
+                logger.debug("test $case for upper config")
+                Assertions.assertEquals(case.expect4UpperConfig, processor.process(listOf(case.value)))
+            }
         }
     }
 
     @Test
     fun testBothNumberRange() {
         val cfg = open(Constants.NUMBER_RANGE_SAMPLE_CONFIG_BOTH)
-        val processor = SurveyorFactory.createSurveyor(cfg)
-        for (case in cases) {
-            logger.debug("test $case for both config")
-            Assertions.assertEquals(case.expect4BothConfig, processor.process(listOf(case.value)))
+        SurveyorFactory.createSurveyor(cfg).use { processor ->
+            for (case in cases) {
+                logger.debug("test $case for both config")
+                Assertions.assertEquals(case.expect4BothConfig, processor.process(listOf(case.value)))
+            }
         }
     }
 }

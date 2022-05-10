@@ -78,8 +78,9 @@ class SurveyorFactoryTest {
             FileInputStream(f).use {
                 val cfg = SurveyorFactory.createRuleConfig(it)
                 Assertions.assertEquals(case.second, cfg::class.java)
-                val processor = SurveyorFactory.createSurveyor(cfg)
-                Assertions.assertEquals(case.third, processor::class.java)
+                SurveyorFactory.createSurveyor(cfg).use { processor ->
+                    Assertions.assertEquals(case.third, processor::class.java)
+                }
             }
         }
     }

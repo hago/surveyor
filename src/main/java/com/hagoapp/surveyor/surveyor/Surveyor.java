@@ -10,6 +10,8 @@ package com.hagoapp.surveyor.surveyor;
 import com.hagoapp.surveyor.RuleConfig;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Closeable;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -18,7 +20,7 @@ import java.util.List;
  * @author Chaojun Sun
  * @since 0.1
  */
-public interface Surveyor {
+public interface Surveyor extends Closeable {
     /**
      * This method should return a string indicating type of configuration that it can handle, the return value should
      * match the return vale of <code>getConfigType</code> method of a <code>RuleConfig</code> instance.
@@ -42,4 +44,15 @@ public interface Surveyor {
      * @return true if survey is successful for all params, otherwise false
      */
     boolean process(@NotNull List<Object> params);
+
+    /**
+     * Provide an empty implementation for <code>close</code> method from <code>Closeable</code>, in case some
+     * implementation of this interface need to use some un-managed resources.
+     *
+     * @throws IOException follow parent's signature
+     */
+    @Override
+    default void close() throws IOException {
+        // do nothing by default.
+    }
 }
