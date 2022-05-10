@@ -9,10 +9,17 @@ package com.hagoapp.surveyor.surveyor
 
 import com.hagoapp.surveyor.RuleConfig
 import com.hagoapp.surveyor.rule.EmbedJythonRuleConfig
+import com.hagoapp.surveyor.utils.EmbedPythonHelper
 
 class EmbedJythonSurveyor : Surveyor {
 
+    companion object {
+        private const val RETURN_VARIABLE = "ret"
+    }
+
     private lateinit var config: EmbedJythonRuleConfig
+    private lateinit var py: EmbedPythonHelper
+    private val logger = SurveyorLogger.getLogger()
 
     override fun getSupportedConfigType(): String {
         return EmbedJythonRuleConfig.EMBED_PYTHON_RULE_CONFIG
@@ -23,10 +30,22 @@ class EmbedJythonSurveyor : Surveyor {
             throw UnsupportedOperationException("Not an EmbedPythonRuleConfig but ${ruleConfig::class.java.canonicalName}")
         }
         config = ruleConfig
+        py = EmbedPythonHelper()
         return this
     }
 
     override fun process(params: MutableList<Any>): Boolean {
-        TODO("Not yet implemented")
+        val map = params.filterIndexed { i, _ -> i % 2 == 0 }.map { it.toString() }
+            .zip(params.filterIndexed { i, _ -> i % 2 == 1 }).toMap()
+        val result = py.execCodeBlock(config.snippet, map, setOf(RETURN_VARIABLE))
+        return result[RETURN_VARIABLE]?.toString()?.toBoolean() ?: false
+    }
+
+    override fun close() {
+        try {
+            py.close()
+        } catch (e: Throwable) {
+            logger.error("Free jython with error: ${e.message}")
+        }
     }
 }

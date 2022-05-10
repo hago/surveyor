@@ -10,8 +10,6 @@ package com.hagoapp.surveyor.utils
 
 import org.python.core.*
 import org.python.util.PythonInterpreter
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import java.io.ByteArrayInputStream
 import java.io.Closeable
 import java.nio.charset.Charset
@@ -28,7 +26,7 @@ class EmbedPythonHelper : Closeable {
         private val pySystemState = PySystemState()
         private val threadState: ThreadState
         private const val PEP_263_TEMPLATE = "# -*- coding: %s -*-"
-        private val logger: Logger = LoggerFactory.getLogger(EmbedPythonHelper::class.java)
+        private val logger = SurveyorLogger.getLogger()
 
         init {
             pySystemState.setdefaultencoding("utf-8")
