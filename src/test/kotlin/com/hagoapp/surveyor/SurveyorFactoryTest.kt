@@ -7,12 +7,10 @@
 
 package com.hagoapp.surveyor
 
+import com.hagoapp.surveyor.rule.*
+import com.hagoapp.surveyor.surveyor.EmbedJythonSurveyor
 import com.hagoapp.surveyor.surveyor.NumberRangeRuleSurveyor
 import com.hagoapp.surveyor.surveyor.RegexRuleSurveyor
-import com.hagoapp.surveyor.rule.NumberBoundary
-import com.hagoapp.surveyor.rule.NumberRangeRuleConfig
-import com.hagoapp.surveyor.rule.OptionsRuleConfig
-import com.hagoapp.surveyor.rule.RegexRuleConfig
 import com.hagoapp.surveyor.surveyor.OptionsRuleSurveyor
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeAll
@@ -68,6 +66,10 @@ class SurveyorFactoryTest {
         Triple(
             Constants.OPTIONS_SAMPLE_CASE_INSENSITIVE, OptionsRuleConfig::class.java,
             OptionsRuleSurveyor::class.java
+        ),
+        Triple(
+            Constants.EMBED_JYTHON_SAMPLE_BASIC, EmbedJythonRuleConfig::class.java,
+            EmbedJythonSurveyor::class.java
         )
     )
 

@@ -29,4 +29,6 @@ public class Constants {
     public static final String OPTIONS_SAMPLE_NULLABLE = "optionsrule/nullable.json";
     public static final String OPTIONS_SAMPLE_NULL_OPTION = "optionsrule/nulloption.json";
     public static final String OPTIONS_SAMPLE_CASE_INSENSITIVE = "optionsrule/uncase.json";
+
+    public static final String EMBED_JYTHON_SAMPLE_BASIC = "embedjython/basic.json";
 }
