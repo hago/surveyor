@@ -31,7 +31,9 @@ class RegexRuleTest {
         Case("\\d+", false, "123", true),
         Case("\\d+", false, "abc", false),
         Case("\\w+", false, " 123", false),
-        Case("\\w+", false, "abc123", true)
+        Case("\\w+", false, "abc123", true),
+        Case("abc", false, "ABC", true),
+        Case("abc", true, "ABC", false)
     )
 
     @Test

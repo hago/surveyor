@@ -30,7 +30,8 @@ public class RegexRuleSurveyor implements Surveyor {
             throw new IllegalArgumentException("Not a regex rule config");
         }
         config = (RegexRuleConfig) ruleConfig;
-        pattern = Pattern.compile(config.getPattern());
+        var caseFlag = config.isCaseSensitive() ? 0 : Pattern.CASE_INSENSITIVE;
+        pattern = Pattern.compile(config.getPattern(), caseFlag);
         return this;
     }
 
