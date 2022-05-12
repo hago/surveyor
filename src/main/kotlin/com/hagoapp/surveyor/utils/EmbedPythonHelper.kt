@@ -114,10 +114,10 @@ class EmbedPythonHelper : Closeable {
             }
         }
 
-        private val importRegex = Regex.fromLiteral("\\s*import\\s+(\\S+?)")
-        private fun isImportClauseShouldSkip(line: String, allowedImportModules: Set<String>): Boolean {
+        private val importRegex = Regex("\\s*import\\s+(\\S+)")
+        private fun shouldSkipImportClause(line: String, allowedImportModules: Set<String>): Boolean {
             val m = importRegex.find(line) ?: return false
-            return allowedImportModules.contains(m.value)
+            return !allowedImportModules.contains(m.value)
         }
     }
 
@@ -136,9 +136,9 @@ class EmbedPythonHelper : Closeable {
         presetVariables.forEach { (name, value) ->
             interpreter.set(name, toPyObject(value))
         }
-        val lines = code.split("\r\n").filter { it.isNotBlank() }
+        val lines = code.split("\r\n", "\r", "\n").filter { it.isNotBlank() }
         for (line in lines) {
-            if (isImportClauseShouldSkip(line, allowedImportModules)) {
+            if (shouldSkipImportClause(line, allowedImportModules)) {
                 continue
             }
             exec(interpreter, line, sourceEncode)
