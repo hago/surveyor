@@ -34,7 +34,8 @@ class EmbedJythonTest {
     private data class Case(
         val variableNames: List<String>,
         val variables: List<Any?>,
-        val expected: Boolean
+        val expected: Boolean,
+        val expectException: Boolean = false
     )
 
     private val cases = mapOf(
@@ -48,6 +49,22 @@ class EmbedJythonTest {
                 listOf("input"),
                 listOf(0),
                 true
+            )
+        ),
+        Constants.EMBED_JYTHON_SAMPLE_PREVENT_IMPORT to listOf(
+            Case(
+                listOf(),
+                listOf(),
+                expected = false,
+                true
+            )
+        ),
+        Constants.EMBED_JYTHON_SAMPLE_ALLOW_IMPORT to listOf(
+            Case(
+                listOf(),
+                listOf(),
+                expected = false,
+                false
             )
         )
     )
@@ -69,8 +86,12 @@ class EmbedJythonTest {
                             l.add(case.variableNames[i])
                             l.add(case.variables[i])
                         }
-                        val ret = surveyor.process(l)
-                        Assertions.assertEquals(case.expected, ret)
+                        if (case.expectException) {
+                            Assertions.assertThrows(Exception::class.java) { surveyor.process(l) }
+                        } else {
+                            val ret = surveyor.process(l)
+                            Assertions.assertEquals(case.expected, ret)
+                        }
                     }
                 }
             }

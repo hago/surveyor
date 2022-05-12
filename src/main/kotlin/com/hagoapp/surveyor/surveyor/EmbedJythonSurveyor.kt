@@ -31,6 +31,7 @@ class EmbedJythonSurveyor : Surveyor {
         }
         config = ruleConfig
         py = EmbedPythonHelper()
+        py.allowedImportModules = config.allowedImports.toSet()
         return this
     }
 

@@ -31,4 +31,6 @@ public class Constants {
     public static final String OPTIONS_SAMPLE_CASE_INSENSITIVE = "optionsrule/uncase.json";
 
     public static final String EMBED_JYTHON_SAMPLE_BASIC = "embedjython/basic.json";
+    public static final String EMBED_JYTHON_SAMPLE_PREVENT_IMPORT = "embedjython/preventimport.json";
+    public static final String EMBED_JYTHON_SAMPLE_ALLOW_IMPORT = "embedjython/allowimport.json";
 }

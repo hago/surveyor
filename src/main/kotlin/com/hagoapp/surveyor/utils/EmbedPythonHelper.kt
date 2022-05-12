@@ -117,7 +117,8 @@ class EmbedPythonHelper : Closeable {
         private val importRegex = Regex("\\s*import\\s+(\\S+)")
         private fun shouldSkipImportClause(line: String, allowedImportModules: Set<String>): Boolean {
             val m = importRegex.find(line) ?: return false
-            return !allowedImportModules.contains(m.value)
+            val module = m.groupValues[1]
+            return !allowedImportModules.contains(module)
         }
     }
 
