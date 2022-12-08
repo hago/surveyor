@@ -10,6 +10,7 @@ package com.hagoapp.surveyor.surveyor
 import com.hagoapp.surveyor.RuleConfig
 import com.hagoapp.surveyor.rule.EmbedJythonRuleConfig
 import com.hagoapp.surveyor.utils.EmbedPythonHelper
+import org.slf4j.LoggerFactory
 
 class EmbedJythonSurveyor : Surveyor {
 
@@ -19,7 +20,7 @@ class EmbedJythonSurveyor : Surveyor {
 
     private lateinit var config: EmbedJythonRuleConfig
     private lateinit var py: EmbedPythonHelper
-    private val logger = SurveyorLogger.getLogger()
+    private val logger = LoggerFactory.getLogger(EmbedPythonHelper::class.java)
 
     override fun getSupportedConfigType(): String {
         return EmbedJythonRuleConfig.EMBED_PYTHON_RULE_CONFIG
