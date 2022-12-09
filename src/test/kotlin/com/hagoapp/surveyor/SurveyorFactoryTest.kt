@@ -8,10 +8,7 @@
 package com.hagoapp.surveyor
 
 import com.hagoapp.surveyor.rule.*
-import com.hagoapp.surveyor.surveyor.EmbedJythonSurveyor
-import com.hagoapp.surveyor.surveyor.NumberRangeRuleSurveyor
-import com.hagoapp.surveyor.surveyor.RegexRuleSurveyor
-import com.hagoapp.surveyor.surveyor.OptionsRuleSurveyor
+import com.hagoapp.surveyor.surveyor.*
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
@@ -23,8 +20,9 @@ class SurveyorFactoryTest {
     companion object {
         private var baseDirectory: String = "./tests/sampleconfig"
 
+        @JvmStatic
         @BeforeAll
-        fun init() {
+        fun init(): Unit {
             val props = System.getProperties()
             if (props.containsKey(Constants.CONFIG_TEST_BASE_DIRECTORY)) {
                 baseDirectory = props[Constants.CONFIG_TEST_BASE_DIRECTORY].toString()
@@ -32,7 +30,6 @@ class SurveyorFactoryTest {
         }
     }
 
-    private val logger = Constants.getLogger()
     private val cases = listOf(
         Triple("regexrule.json", RegexRuleConfig::class.java, RegexRuleSurveyor::class.java),
         Triple(
@@ -70,6 +67,10 @@ class SurveyorFactoryTest {
         Triple(
             Constants.EMBED_JYTHON_SAMPLE_BASIC, EmbedJythonRuleConfig::class.java,
             EmbedJythonSurveyor::class.java
+        ),
+        Triple(
+            Constants.TIME_RANGE_SAMPLE_CONFIG_BOTH, TimeRangeRuleConfig::class.java,
+            TimeRangeRuleSurveyor::class.java
         )
     )
 

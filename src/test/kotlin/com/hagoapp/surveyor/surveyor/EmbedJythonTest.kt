@@ -12,6 +12,7 @@ import com.hagoapp.surveyor.SurveyorFactory
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
+import org.slf4j.LoggerFactory
 import java.io.File
 import java.io.FileInputStream
 
@@ -20,8 +21,9 @@ class EmbedJythonTest {
     companion object {
         private var baseDirectory: String = "./tests/sampleconfig"
 
+        @JvmStatic
         @BeforeAll
-        fun init() {
+        fun init(): Unit {
             val props = System.getProperties()
             if (props.containsKey(Constants.CONFIG_TEST_BASE_DIRECTORY)) {
                 baseDirectory = props[Constants.CONFIG_TEST_BASE_DIRECTORY].toString()
@@ -29,7 +31,7 @@ class EmbedJythonTest {
         }
     }
 
-    private val logger = Constants.getLogger()
+    private val logger = LoggerFactory.getLogger(this::class.java)
 
     private data class Case(
         val variableNames: List<String>,

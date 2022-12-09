@@ -1,0 +1,12 @@
+{
+  "configType": "com.hagoapp.time.range",
+  "nullable": false,
+  "lowerBoundary": {
+    "value": 0,
+    "inclusive": true
+  },
+  "upperBoundary": {
+    "value": 1,
+    "inclusive": true
+  }
+}

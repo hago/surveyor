@@ -12,6 +12,7 @@ import com.hagoapp.surveyor.SurveyorFactory
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
+import org.slf4j.LoggerFactory
 import java.io.File
 import java.io.FileInputStream
 
@@ -19,10 +20,11 @@ class OptionsRuleTest {
 
     companion object {
         private var baseDirectory: String = "./tests/sampleconfig"
-        private val logger = Constants.getLogger()
+        private val logger = LoggerFactory.getLogger(this::class.java)
 
+        @JvmStatic
         @BeforeAll
-        private fun load() {
+        fun load(): Unit {
             val props = System.getProperties()
             if (props.containsKey(Constants.CONFIG_TEST_BASE_DIRECTORY)) {
                 baseDirectory = props[Constants.CONFIG_TEST_BASE_DIRECTORY].toString()

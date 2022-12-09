@@ -7,16 +7,7 @@
 
 package com.hagoapp.surveyor;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 public class Constants {
-    private static final Logger logger = LoggerFactory.getLogger(Constants.class);
-
-    public static Logger getLogger() {
-        return logger;
-    }
-
     public static final String TEST_BASE_DIRECTORY = "test.dir";
     public static final String CONFIG_TEST_BASE_DIRECTORY = "test.config.dir";
 
@@ -33,4 +24,6 @@ public class Constants {
     public static final String EMBED_JYTHON_SAMPLE_BASIC = "embedjython/basic.json";
     public static final String EMBED_JYTHON_SAMPLE_PREVENT_IMPORT = "embedjython/preventimport.json";
     public static final String EMBED_JYTHON_SAMPLE_ALLOW_IMPORT = "embedjython/allowimport.json";
+
+    public static final String TIME_RANGE_SAMPLE_CONFIG_BOTH = "timerangerule/both.json";
 }

@@ -7,14 +7,14 @@
 
 package com.hagoapp.surveyor.surveyor
 
-import com.hagoapp.surveyor.Constants
 import com.hagoapp.surveyor.rule.RegexRuleConfig
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
+import org.slf4j.LoggerFactory
 
 class RegexRuleTest {
 
-    private val logger = Constants.getLogger()
+    private val logger = LoggerFactory.getLogger(this::class.java)
 
     data class Case(
         val regex: String,
