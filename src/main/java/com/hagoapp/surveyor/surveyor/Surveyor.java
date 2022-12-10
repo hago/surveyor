@@ -45,6 +45,10 @@ public interface Surveyor extends Closeable {
      */
     boolean process(@NotNull List<Object> params);
 
+    default boolean process(Object... params) {
+        return process(List.of(params));
+    }
+
     /**
      * Provide an empty implementation for <code>close</code> method from <code>Closeable</code>, in case some
      * implementation of this interface need to use some un-managed resources.
