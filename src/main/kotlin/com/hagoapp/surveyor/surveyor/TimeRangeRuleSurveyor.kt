@@ -2,6 +2,7 @@ package com.hagoapp.surveyor.surveyor
 
 import com.hagoapp.surveyor.RuleConfig
 import com.hagoapp.surveyor.rule.TimeRangeRuleConfig
+import org.slf4j.LoggerFactory
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.ZoneOffset
@@ -10,6 +11,7 @@ import java.time.ZonedDateTime
 class TimeRangeRuleSurveyor : Surveyor {
 
     private lateinit var config: TimeRangeRuleConfig
+    private val logger = LoggerFactory.getLogger(TimeRangeRuleSurveyor::class.java)
 
     override fun getSupportedConfigType(): String {
         return TimeRangeRuleConfig.TIME_RANGE_CONFIG
@@ -38,6 +40,12 @@ class TimeRangeRuleSurveyor : Surveyor {
             is ZonedDateTime -> value.toInstant().toEpochMilli()
             else -> throw UnsupportedOperationException("Unsupported datetime type ${value::class.java.canonicalName}")
         }
+        logger.debug(
+            "test {} against {} <--> {}",
+            value,
+            config.lowerBoundary?.timeStamp,
+            config.upperBoundary?.timeStamp
+        )
         return largerThanLowerOrNull(v) && lessThanUpperOrNull(v)
     }
 
