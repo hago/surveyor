@@ -26,4 +26,7 @@ public class Constants {
     public static final String EMBED_JYTHON_SAMPLE_ALLOW_IMPORT = "embedjython/allowimport.json";
 
     public static final String TIME_RANGE_SAMPLE_CONFIG_BOTH = "timerangerule/both.json";
+    public static final String TIME_RANGE_SAMPLE_CONFIG_NULL = "timerangerule/null.json";
+    public static final String TIME_RANGE_SAMPLE_CONFIG_LOWER = "timerangerule/lower.json";
+    public static final String TIME_RANGE_SAMPLE_CONFIG_UPPER = "timerangerule/upper.json";
 }
