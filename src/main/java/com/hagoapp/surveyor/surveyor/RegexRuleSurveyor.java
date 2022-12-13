@@ -46,4 +46,9 @@ public class RegexRuleSurveyor implements Surveyor {
         var m = pattern.matcher(params.get(0).toString());
         return m.matches();
     }
+
+    @Override
+    public RuleConfig getConfig() {
+        return config;
+    }
 }

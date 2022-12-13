@@ -49,6 +49,8 @@ public interface Surveyor extends Closeable {
         return process(List.of(params));
     }
 
+    RuleConfig getConfig();
+
     /**
      * Provide an empty implementation for <code>close</code> method from <code>Closeable</code>, in case some
      * implementation of this interface need to use some un-managed resources.

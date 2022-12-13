@@ -43,6 +43,10 @@ class EmbedJythonSurveyor : Surveyor {
         return result[RETURN_VARIABLE]?.toString()?.toBoolean() ?: false
     }
 
+    override fun getConfig(): RuleConfig {
+        return config
+    }
+
     override fun close() {
         try {
             py.close()

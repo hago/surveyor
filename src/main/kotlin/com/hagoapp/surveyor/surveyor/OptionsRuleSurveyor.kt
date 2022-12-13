@@ -49,4 +49,8 @@ class OptionsRuleSurveyor : Surveyor {
         }
         return true
     }
+
+    override fun getConfig(): RuleConfig {
+        return config
+    }
 }
