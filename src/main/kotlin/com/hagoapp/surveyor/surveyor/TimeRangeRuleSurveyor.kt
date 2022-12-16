@@ -33,10 +33,6 @@ class TimeRangeRuleSurveyor : Surveyor {
         }
     }
 
-    override fun getConfig(): RuleConfig {
-        return config
-    }
-
     private fun test(value: Any): Boolean {
         val v = when (value) {
             is Long -> value

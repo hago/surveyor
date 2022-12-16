@@ -47,8 +47,4 @@ public class RegexRuleSurveyor implements Surveyor {
         return m.matches();
     }
 
-    @Override
-    public RuleConfig getConfig() {
-        return config;
-    }
 }

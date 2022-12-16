@@ -43,10 +43,6 @@ class NumberRangeRuleSurveyor : Surveyor {
         }
     }
 
-    override fun getConfig(): RuleConfig {
-        return config
-    }
-
     private fun toNum(input: Any): Double {
         if (input !is Number) {
             throw UnsupportedOperationException("$input should be a number")
