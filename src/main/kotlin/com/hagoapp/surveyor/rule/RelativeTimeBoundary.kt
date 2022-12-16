@@ -10,9 +10,10 @@ import java.util.*
 data class RelativeTimeBoundary(
     val anchor: TimeAnchor,
     val diff: TimeDiff,
+    val inclusive: Boolean = true,
     val timeZoneName: String = "UTC"
 ) {
-    fun calculateTime(anchor: TimeAnchor, offset: Long): ZonedDateTime {
+    fun calculateTime(offset: Long = 0L): ZonedDateTime {
         val it = Instant.ofEpochMilli(Instant.now().toEpochMilli() + offset)
         val aTime = ZonedDateTime.ofInstant(it, TimeZone.getTimeZone(timeZoneName).toZoneId())
         return when (anchor) {
@@ -30,7 +31,7 @@ data class RelativeTimeBoundary(
         }
     }
 
-    fun calculateEpochMilli(anchor: TimeAnchor, offset: Long): Long {
-        return calculateTime(anchor, offset).toInstant().toEpochMilli()
+    fun calculateEpochMilli(): Long {
+        return diff.apply(calculateTime()).toInstant().toEpochMilli()
     }
 }
